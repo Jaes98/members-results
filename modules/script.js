@@ -2,6 +2,7 @@ import * as member from "./member.js";
 import * as result from "./result.js";
 import * as ListRenderer from "./listRenderer.js";
 
+
 import { initTabs } from "./tabs.js";
 
 initApp();
@@ -13,14 +14,26 @@ async function initApp() {
   initTabs();
  
   await membersToArray();
- const memberList = ListRenderer.construct(membersArray);
+  const memberList = ListRenderer.construct(membersArray, "table#members tbody");
   memberList.render();
   //showMembers(membersArray);
 
   await resultsToArray();
+  const resultList = ListRenderer.construct(resultsArray, "table#results tbody");
+  resultList.render();
   // showResults(resultsArray);
 }
 
+// const resultList = ListRenderer.construct(
+//   resultsArray,
+//   "table#results tbody",
+//   ResultRenderer
+// );
+//  const memberList = ListRenderer.construct(
+//    membersArray,
+//    "table#members tbody",
+//    MemberRenderer
+//  );
 
 // Fetch results og members
 async function getMembers() {
@@ -52,27 +65,27 @@ async function resultsToArray() {
     }
 }
 
-function showMembers(members) {
-  document.querySelector("table#members tbody").innerHTML = "";
-  for (const member of members) {
+// function showMembers(members) {
+//   document.querySelector("table#members tbody").innerHTML = "";
+//   for (const member of members) {
 
-    const html = /* html */ `
-    <tr>
-      <td>${member.name}</td>
-      <td>${member.active}</td>
-      <td>${member.birthday.toLocaleString("da", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })}</td>
-      <td>${member.age}</td>
-      <td>${member.ageGroup}</td>
-      <td>${member.email}</td>
-      </tr>`;
+//     const html = /* html */ `
+//     <tr>
+//       <td>${member.name}</td>
+//       <td>${member.active}</td>
+//       <td>${member.birthday.toLocaleString("da", {
+//         day: "numeric",
+//         month: "short",
+//         year: "numeric",
+//       })}</td>
+//       <td>${member.age}</td>
+//       <td>${member.ageGroup}</td>
+//       <td>${member.email}</td>
+//       </tr>`;
 
-      document.querySelector("table#members tbody").insertAdjacentHTML("beforeend", html)  
-    }
-}
+//       document.querySelector("table#members tbody").insertAdjacentHTML("beforeend", html)  
+//     }
+// }
 
 function showResults(results) {
   document.querySelector("table#results tbody").innerHTML = "";

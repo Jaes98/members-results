@@ -13,8 +13,8 @@ function construct(result) {
         },
         get type() {
             if (this.type_ === "competition") {
-                return true
-            } else return false;
+                return "Træning"
+            } else return "Stævne";
         }
     }
     return resultObject;
