@@ -1,5 +1,6 @@
 import * as member from "./member.js";
 import * as result from "./result.js";
+import * as ListRenderer from "./listRenderer.js";
 
 import { initTabs } from "./tabs.js";
 
@@ -10,11 +11,14 @@ const resultsArray = [];
 
 async function initApp() {
   initTabs();
+ 
   await membersToArray();
-  showMembers(membersArray);
+ const memberList = ListRenderer.construct(membersArray);
+  memberList.render();
+  //showMembers(membersArray);
 
   await resultsToArray();
-  showResults(resultsArray);
+  // showResults(resultsArray);
 }
 
 
