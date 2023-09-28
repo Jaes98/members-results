@@ -114,7 +114,7 @@ function disciplineTranslate(discipline) {
     return "Butterfly"
   } else if (discipline === "freestyle") {
     return "Freestyle"
-  }
+  } else return discipline
 }
 
 function typeFromResult(resultType) {
